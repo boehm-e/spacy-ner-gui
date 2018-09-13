@@ -1,0 +1,109 @@
+<html lang="en" dir="ltr" class="mdl-js"><head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer="" src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+  <script src="/static/libs/jquery.min.js" charset="utf-8"></script>
+  <script src="/static/libs/jquery-ui.js"></script>
+  <script src="/static/highlight/jquery.highlight-within-textarea.js" charset="utf-8"></script>
+  <script src="/static/ace/ace.js" charset="utf-8"></script>
+  <script src="/static/ace/ext-language_tools.js" charset="utf-8"></script>
+  <script src="/static/ace/theme-chrome.js" charset="utf-8"></script>
+  <script src="/static/ace/mode-xml.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="/static/libs/jquery-ui.css">
+  <script src="/static/libs/vkbeautify.0.99.00.beta.js"></script>
+  <link rel="stylesheet" href="/static/highlight/jquery.highlight-within-textarea.css">
+</head>
+
+  <div id="modal">
+    <h3>Enter your text here : </h3>
+    <textarea name="" id="textinput" cols="30" rows="10">
+    </textarea>
+    <button onclick="begin()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="submit" data-upgraded=",MaterialButton,MaterialRipple">
+      <i class="material-icons" role="presentation" >done</i>
+      <span class="visuallyhidden">Submit</span>
+      <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+    </button>
+  </div>
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+
+
+  <div id="container" class="mdl-layout__container has-scrolling-header"><div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-tabs is-upgraded" data-upgraded=",MaterialLayout">
+    <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+      <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        <h3>NER trainer</h3>
+      </div>
+      <div class="mdl-layout__tab-bar-container"><div class="mdl-layout__tab-bar-button mdl-layout__tab-bar-left-button"><i class="material-icons">chevron_left</i></div><div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark mdl-js-ripple-effect--ignore-events" data-upgraded=",MaterialRipple">
+        <a href="#overview" class="mdl-layout__tab is-active">Training<span class="mdl-layout__tab-ripple-container mdl-js-ripple-effect" data-upgraded=",MaterialRipple"><span class="mdl-ripple"></span></span></a>
+        <a href="#overview" onclick="add_text()" class="mdl-layout__tab ">Add Text<span class="mdl-layout__tab-ripple-container mdl-js-ripple-effect" data-upgraded=",MaterialRipple"><span class="mdl-ripple"></span></span></a>
+        <button onclick="next_sentence()" class="colored mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add" data-upgraded=",MaterialButton,MaterialRipple">
+          <i class="material-icons" role="presentation" >arrow_right</i>
+          <span class="visuallyhidden">Submit</span>
+          <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+        </button>
+        <button  style="margin-right: 105px;" onclick="prev_sentence()" class="colored mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add" data-upgraded=",MaterialButton,MaterialRipple">
+          <i class="material-icons" role="presentation" >arrow_left</i>
+          <span class="visuallyhidden">Submit</span>
+          <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+        </button>
+      </div><div class="mdl-layout__tab-bar-button mdl-layout__tab-bar-right-button"><i class="material-icons">chevron_right</i></div></div>
+    </header>
+
+
+    <!-- SETTINGS -->
+    <div id="settings">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="modelName">
+        <label class="mdl-textfield__label" for="modelName">Model Name...</label>
+      </div>
+    </div>
+
+
+    <main class="mdl-layout__content">
+      <div class="mdl-layout__tab-panel is-active" id="overview">
+
+
+
+        <!-- COREFERENCE RESOLUTION -->
+        <section class=" mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+            <div id="section1ContentWrapper" class="mdl-card__supporting-text">
+              <textarea readonly id="input_ner_sentence" spellcheck="false">click on "ADD TEXT" to begin</textarea>
+
+
+            </div>
+          </div>
+          <button onclick="removeEntityFromSent()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp" id="removeEntityFromSent" data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation" >close</i>
+            <span class="visuallyhidden">Submit</span>
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+          </button>
+        </section>
+
+
+
+      </div>
+
+      <button onclick="submit()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp" id="submit_model" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons" role="presentation" >done</i>
+        <span class="visuallyhidden">Submit</span>
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+      </button>
+
+    </main>
+  </div>
+</div>
+</body>
+
+<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="/static/js/analyze.js"></script>
+<script src="/static/js/asr.js"></script>
+
+
+<link rel="stylesheet" href="/static/css/gui.css">
+
+
+
+
+</body></html>

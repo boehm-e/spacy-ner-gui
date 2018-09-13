@@ -1,0 +1,32 @@
+Å´transitions⁄™[
+  {
+    "clas":0,
+    "move":1,
+    "label":"SU_SUBJECT",
+    "name":"B-SU_SUBJECT"
+  },
+  {
+    "clas":1,
+    "move":2,
+    "label":"SU_SUBJECT",
+    "name":"I-SU_SUBJECT"
+  },
+  {
+    "clas":2,
+    "move":3,
+    "label":"SU_SUBJECT",
+    "name":"L-SU_SUBJECT"
+  },
+  {
+    "clas":3,
+    "move":4,
+    "label":"SU_SUBJECT",
+    "name":"U-SU_SUBJECT"
+  },
+  {
+    "clas":4,
+    "move":5,
+    "label":"",
+    "name":"O"
+  }
+]
