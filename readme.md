@@ -1,5 +1,6 @@
 usage:
 
+go to http://localhost:5000
 ```
 python3 server.py
 ```
