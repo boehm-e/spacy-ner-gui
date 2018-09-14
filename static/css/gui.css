@@ -396,3 +396,18 @@ header button.colored {
   bottom: 16px;
   background: green;
 }
+
+
+#svoChoose {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px;
+  z-index: 9999;
+}
+
+#svoChoose > label {
+  margin-right: 50px;
+  margin-left: 50px;
+}

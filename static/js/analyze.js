@@ -1,4 +1,10 @@
 colors = ["#ada7fc", "#ec6f86", "#fadd74", "#9ff3c3", "#4572e7", "#d187ef", "#f3806d", "#daff75", "#6aecf4", "#7e69ff", "#f7a5f8", "#f7ba6c", "#b2f068", "#48b4e7", "#ad61ed"];
+colors_svo = {
+  "SU_SUBJECT": colors[0],
+  "SU_VERB": colors[1],
+  "SU_OBJECT": colors[2]
+}
+
 color_index = 0;
 function getNextColor() {
   color_index++;
@@ -29,9 +35,33 @@ const prev_sentence = () => {
 
 }
 
+const get_entity = () => {
+  var radios = document.getElementsByName("svoptions");
+
+  for (var i = 0, length = radios.length; i < length; i++)
+  {
+    if (radios[i].checked)
+    {
+      return radios[i].dataset.entity
+    }
+  }
+}
+
+const next_s_v_o = () => {
+  var radios = document.getElementsByName("svoptions");
+  for (var i = 0, length = radios.length; i < length; i++)
+  {
+    if (radios[i].checked == true)
+    {
+      // 		radios[i+1].parentNode.MaterialRadio.check()
+      radios[(i+1)%radios.length].parentNode.MaterialRadio.check()
+      break;
+    }
+  }
+}
 
 const get_selected_text = () => {
-  var ret = input.selectionStart - input.selectionEnd != 0 ? [input.selectionStart, input.selectionEnd, 'SU_SUBJECT'] : false
+  var ret = input.selectionStart - input.selectionEnd != 0 ? [input.selectionStart, input.selectionEnd, get_entity()] : false
   // clearSelection();
   return ret;
 }
@@ -52,7 +82,7 @@ const highlight = () => {
 
 
     const locations = entity.locations;
-    const color = getNextColor()
+    const color = colors_svo[entity[2]]
     locs.push({
       highlight: '',
       range: [entity[0], entity[1]],
@@ -72,11 +102,14 @@ const highlight = () => {
 const removeEntityFromSent = () => {
   clearHighlight();
   dataset[sentences[index]]["entities"] = [];
+  clearSelection();
+  highlight();
 }
 
 window.onmouseup = () => {
   let entity = get_selected_text()
   if (entity != false) {
+    next_s_v_o();
     dataset[sentences[index]]["entities"].push(entity)
     printDataset();
     highlight();

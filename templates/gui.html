@@ -16,16 +16,16 @@
   <link rel="stylesheet" href="/static/highlight/jquery.highlight-within-textarea.css">
 </head>
 
-  <div id="modal">
-    <h3>Enter your text here : </h3>
-    <textarea name="" id="textinput" cols="30" rows="10">
-    </textarea>
-    <button onclick="begin()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="submit" data-upgraded=",MaterialButton,MaterialRipple">
-      <i class="material-icons" role="presentation" >done</i>
-      <span class="visuallyhidden">Submit</span>
-      <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
-    </button>
-  </div>
+<div id="modal">
+  <h3>Enter your text here : </h3>
+  <textarea name="" id="textinput" cols="30" rows="10">
+  </textarea>
+  <button onclick="begin()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="submit" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons" role="presentation" >done</i>
+    <span class="visuallyhidden">Submit</span>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+  </button>
+</div>
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
 
 
@@ -74,6 +74,21 @@
 
             </div>
           </div>
+          <div id="svoChoose">
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="subject">
+              <input type="radio" data-entity="SU_SUBJECT" id="subject" class="mdl-radio__button svoptions" name="svoptions" value="1" checked>
+              <span class="mdl-radio__label">Subject</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="verb">
+              <input type="radio" data-entity="SU_VERB" id="verb" class="mdl-radio__button svoptions" name="svoptions" value="2">
+              <span class="mdl-radio__label">Verb</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="object">
+              <input type="radio" data-entity="SU_OBJECT" id="object" class="mdl-radio__button svoptions" name="svoptions" value="3">
+              <span class="mdl-radio__label">Object</span>
+            </label>
+          </div>
+
           <button onclick="removeEntityFromSent()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp" id="removeEntityFromSent" data-upgraded=",MaterialButton,MaterialRipple">
             <i class="material-icons" role="presentation" >close</i>
             <span class="visuallyhidden">Submit</span>

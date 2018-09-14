@@ -1,5 +1,7 @@
-
 from __future__ import unicode_literals, print_function
+
+# See this : https://spacy.io/usage/training#example-new-entity-type
+# Handle this : https://explosion.ai/blog/pseudo-rehearsal-catastrophic-forgetting
 
 import plac
 import random
@@ -9,14 +11,14 @@ nlp = spacy.load("en_core_web_sm")
 
 
 # new entity label
-LABEL = 'SU_SUBJECT'
+LABELS = ['SU_SUBJECT', 'SU_VERB', 'SU_OBJECT']
 
 
 
 def split_sentences(text):
     return [sent.text for sent in nlp(text).sents]
 
-def train_model(model=None, new_model_name='background_extraction', output_dir=None, n_iter=20, training_data=[]):
+def train_model(model=None, new_model_name='default', output_dir=None, n_iter=50, training_data=[]):
     """Set up the pipeline and entity recognizer, and train the new entity."""
     if model is not None:
         nlp = spacy.load(model)  # load existing spaCy model
@@ -33,7 +35,9 @@ def train_model(model=None, new_model_name='background_extraction', output_dir=N
     else:
         ner = nlp.get_pipe('ner')
 
-    ner.add_label(LABEL)   # add new entity label to entity recognizer
+    for LABEL in LABELS:
+        ner.add_label(LABEL)   # add new entity label to entity recognizer
+
     if model is None:
         optimizer = nlp.begin_training()
     else:
